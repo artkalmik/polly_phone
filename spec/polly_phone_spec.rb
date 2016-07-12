@@ -17,6 +17,30 @@ describe PollyPhone do
       expect(brands.first[0]).to eq "Apple"
       expect(brands.first[1]).to eq "apple.html"
     end
+
+    it "get brands list" do
+      brands_list = @site.brands_list
+      expect(brands_list.count).to eq 3
+      expect(brands_list[0]).to eq "Apple"
+      expect(brands_list[1]).to eq "LG"
+      expect(brands_list[2]).to eq "Samsung"
+    end
+
+    it "get models" do
+      models = @site.models("Apple")
+      expect(models.count).to eq 3
+      expect(models.first[:name]).to eq "IPhone 6"
+      expect(models.first[:img]).to eq "test.jpg"
+      expect(models.first[:link]).to eq "iphone6.html"
+    end
+
+    it "get models list" do
+      models_list = @site.models_list("Apple")
+      expect(models_list.count).to eq 3
+      expect(models_list[0]).to eq "IPhone 6"
+      expect(models_list[1]).to eq "IPhone 6s"
+      expect(models_list[2]).to eq "IPhone 7"
+    end
   end
 
   context "utils" do

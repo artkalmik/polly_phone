@@ -36,5 +36,43 @@ module PollyPhone
       end
     end
 
+    def brands_list
+      brands.to_h.keys
+    end
+
+    def models(brand)
+      phone_info(@main_url + brands.to_h[brand])
+    end
+
+    def models_list(brand)
+      models(brand).map{ |m| m[:name] }
+    end
+
+    def search(string)
+      phone_info(@main_url + @search_page + string)
+    end
+
+    # @return [Array]
+    def phone_info(url)
+      doc = Nokogiri::HTML(open(url))
+      phones = page_parser(doc)
+      while doc.at(@next_page)
+        next_page_link = @main_url + doc.at(@next_page)["href"]
+        doc = Nokogiri::HTML(open(next_page_link))
+        phones += page_parser(doc)
+      end
+      phones
+    end
+
+    def page_parser(doc)
+      doc.search(@model_link_path).map do |item|
+        item.css('br').each{ |br| br.replace " " }
+        { name: item.at_xpath(@model_name_item).content,
+          img:  item.at_xpath(@model_image_item)['src'],
+          short: item.at_xpath(@model_image_item)['title'],
+          link: item["href"] }
+      end
+    end
+
   end
 end
