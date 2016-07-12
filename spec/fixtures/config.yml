@@ -1,0 +1,15 @@
+name: "Site"
+main_url: "fixtures/site_dir/"
+brands_url: "catalog.html"
+brand_link_path: "ul li a"
+
+model_link_path: "ul li a"
+model_image_item: "./img"
+model_name_item: "./h3"
+
+spec_path: "#specs div"
+spec_type_item: "./h2"
+spec_category_item: "h3"
+spec_body_item: "p"
+
+next_page: "a.next_page"
