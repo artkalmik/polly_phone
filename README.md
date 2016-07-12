@@ -22,7 +22,69 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To begin with we need a YAML file with following configuration:
+
+| option | example |  description |
+| --------|---------|-------|
+| name: | "MySite" |  title of web-site we want to parse |
+| main_url: |  "http://mysite.com/" |  main url of web-site we want to parse |
+| brands_url: | "catalog.html"  |  additional path to catalog page where we want to get rand names |
+| brand_link_path: | "ul li a" |  path for Nokogiri search method to find element with href param for brand |
+| brand_name_item: |  "./img" |  path for Nokogiri at_xpath method to find element with name of brand (only use when brand name is within another element, otherwise get name of brand link element) |
+| brand_source: | "alt"  |  only use when we need another element param to find brand content, f.e. 'alt' (otherwise use element content) |
+| model_link_path: | "ul li a" |  path for Nokogiri search method to find element with href param for model |
+| model_image_item: |  "./img" |  path for Nokogiri at_xpath method to find element with src param for model image |
+| model_name_item: | "./h3"  |  path for Nokogiri at_xpath method to find element with content for model name |
+| spec_path: | "#desc div" |  path for Nokogiri at_xpath method to find container with phone description |
+| spec_type_item: | "./h2" |  path for Nokogiri at_xpath method to find description type within the container |
+| spec_category_item: |  "./h3" |  path for Nokogiri at method to find description category within the container |
+| spec_body_item: | "./p"  |  path for Nokogiri at method to find description text within the container |
+| search_page: | "search.html?name=" |  additional path for main url for web-site search |
+
+At first initialize a new object
+```sh
+site = PollyPhone::Site.new("config.yml")
+```
+##### Getting brands
+
+There are two methods to find brands.
+First will return an array of arrays [brand_name, brand_link]
+
+```sh
+site = PollyPhone::Site.new("config.yml")
+site.brands
+```
+And the second will return an array of brand names as strings:
+
+```sh
+site = PollyPhone::Site.new("config.yml")
+site.brands_list
+```
+
+##### Getting models
+
+There are also two methods to find models by brand.
+First will return an array of hases {name: "Model name", img: "image src link", link: "model link" }
+
+```sh
+site = PollyPhone::Site.new("config.yml")
+site.models("Asus")
+```
+And the second will return an array of model names as strings:
+
+```sh
+site = PollyPhone::Site.new("config.yml")
+site.models_list
+```
+
+##### Getting phone description
+
+We can get phone description by phone path. It will return a has {"desription type" => {"category" => "text", "category2" => "text"}}
+
+```sh
+site = PollyPhone::Site.new("config.yml")
+site.phone_desc("iphone5s.html")
+```
 
 ## Development
 
