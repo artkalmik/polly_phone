@@ -10,6 +10,8 @@ module PollyPhone
     include Utils
 
     attr_accessor :main_url
+
+    DEFAULT_DESCRIPTION_TYPE = "Description"
     
     def initialize(file_path)
       site_config = symbolize_keys(YAML.load_file(file_path))
@@ -63,7 +65,8 @@ module PollyPhone
       end
       phones
     end
-
+ 
+    # @return [Array]
     def page_parser(doc)
       doc.search(@model_link_path).map do |item|
         item.css('br').each{ |br| br.replace " " }
@@ -73,6 +76,21 @@ module PollyPhone
           link: item["href"] }
       end
     end
-
+    
+    # @return [Hash]
+    def phone_desc(url)
+      type = DEFAULT_DESCRIPTION_TYPE
+      desc = {}
+      doc = Nokogiri::HTML(open(@main_url + url))
+      doc.search(@spec_path).each do |item|
+        item_name = item.at_xpath(@spec_type_item)
+        type = item_name ? item_name.content : type
+        desc[type] ||= {} 
+        category = item.at(@spec_category_item)
+        body = item.at(@spec_body_item)
+        desc[type][category.content] = body.content if category && body
+      end
+      desc
+    end
   end
 end

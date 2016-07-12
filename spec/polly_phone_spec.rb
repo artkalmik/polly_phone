@@ -41,6 +41,13 @@ describe PollyPhone do
       expect(models_list[1]).to eq "IPhone 6s"
       expect(models_list[2]).to eq "IPhone 7"
     end
+
+    it "get phone description" do
+      description = @site.phone_desc("iphone6.html")
+      expect(description.keys.count).to eq 1
+      expect(description["Platform"].keys.count).to eq 3
+      expect(description["Platform"]["Chipset"]).to eq "Apple A8"
+    end
   end
 
   context "utils" do
