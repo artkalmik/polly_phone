@@ -1,5 +1,7 @@
 # PollyPhone
 
+[ ![Codeship Status for artkalmyk/polly_phone](https://codeship.com/projects/195b0a00-2b6e-0134-368a-06ed2d662211/status?branch=master)](https://codeship.com/projects/163157)
+
 ## Installation
 
 Add this line to your application's Gemfile:
