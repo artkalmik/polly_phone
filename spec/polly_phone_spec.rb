@@ -48,6 +48,12 @@ describe PollyPhone do
       expect(description["Platform"].keys.count).to eq 3
       expect(description["Platform"]["Chipset"]).to eq "Apple A8"
     end
+
+    it "search phones" do
+      items = @site.search("")
+      expect(items.count).to eq 1
+      expect(items.first[:name]).to eq "HTC Wildfire"
+    end
   end
 
   context "utils" do

@@ -11,5 +11,5 @@ spec_path: "#specs div"
 spec_type_item: "./h2"
 spec_category_item: "h3"
 spec_body_item: "p"
-
+search_page: "search.html"
 next_page: "a.next_page"
