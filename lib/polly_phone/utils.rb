@@ -3,7 +3,7 @@
 module PollyPhone
   module Utils
 
-  	def symbolize_keys(hash)
+    def symbolize_keys(hash)
       hash.inject({}){|res, (key, val)|
         nkey = case key
                when String
