@@ -63,5 +63,22 @@ describe PollyPhone do
       expect(hash[:one]).to eq 1
       expect(hash[:two]).to eq 2
     end
+
+    it "symbolize inside keys" do
+      data = {"one" => {"inner" => 1}, "two" => 2}
+      hash = symbolize_keys(data)
+      expect(hash[:one][:inner]).to eq 1
+    end
+
+    it "should not change symbolized hash" do
+      data = {one: 1, two: 2}
+      hash = symbolize_keys(data)
+      expect(hash[:one]).to eq 1
+    end
+
+    it "clear string" do
+      string = " foo   bar    \n   \t   boo"
+      expect(clr_str string).to eq "foo bar boo"
+    end
   end
 end

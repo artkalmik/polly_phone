@@ -1,7 +1,8 @@
 # PollyPhone
-
+[![Gem Version](https://badge.fury.io/rb/polly_phone.svg)](https://badge.fury.io/rb/polly_phone)
 [ ![Codeship Status for artkalmyk/polly_phone](https://codeship.com/projects/195b0a00-2b6e-0134-368a-06ed2d662211/status?branch=master)](https://codeship.com/projects/163157)
 [![Coverage Status](https://coveralls.io/repos/bitbucket/artkalmyk/polly_phone/badge.svg?branch=master)](https://coveralls.io/bitbucket/artkalmyk/polly_phone?branch=master)
+[![Code Climate](https://codeclimate.com/repos/5787dfbd9613155a35002739/badges/273dcb416645dd17c504/gpa.svg)](https://codeclimate.com/repos/5787dfbd9613155a35002739/feed)
 
 ## Installation
 
